@@ -86,7 +86,7 @@ namespace MemoryCompare
 	template <template<typename...> class Template, typename... Args>
 	struct is_instantiation_of<Template<Args...>, Template> : std::true_type {};
 
-	static bool SaveBinary(const std::wstring& filePath, void* data, const uint64_t size, const bool append, const bool zip)
+	static bool SaveBinary(const std::wstring& filePath, void* data, const uint64_t size, const bool append/*, const bool zip*/)
 	{
 		std::ofstream file(filePath, std::ios::binary | (append ? std::ios_base::app : std::ios::out));
 		if (!file)

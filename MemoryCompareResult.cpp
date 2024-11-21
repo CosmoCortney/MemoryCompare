@@ -102,20 +102,20 @@ bool MemoryCompare::MemCompareResults::SaveResults(uint32_t rangeIndex, bool zip
 	std::filesystem::create_directories(path);
 	path.append(L"\\" + std::to_wstring(rangeIndex) + L".bin");
 
-	if (!SaveBinary(path, _fileHeaders[rangeIndex].data(), HEADER_SIZE, false, zipped))
+	if (!SaveBinary(path, _fileHeaders[rangeIndex].data(), HEADER_SIZE, false/*, zipped*/))
 		return false;
 
 	if (_addresses.size() == 0)
 		return true;
 
-	if (!SaveBinary(path, _addresses.data(), _resultCounts[rangeIndex] * _addressWidth, true, zipped))
+	if (!SaveBinary(path, _addresses.data(), _resultCounts[rangeIndex] * _addressWidth, true/*, zipped*/))
 		return false;
 
-	if (!SaveBinary(path, _values.data(), _resultCounts[rangeIndex] * _valueWidth, true, zipped))
+	if (!SaveBinary(path, _values.data(), _resultCounts[rangeIndex] * _valueWidth, true/*, zipped*/))
 		return false;
 
 	if(_iteration > 1)
-		if (!SaveBinary(path, _previousValues.data(), _resultCounts[rangeIndex] * _valueWidth, true, zipped))
+		if (!SaveBinary(path, _previousValues.data(), _resultCounts[rangeIndex] * _valueWidth, true/*, zipped*/))
 			return false;
 
 	return true;
